@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = "github.com/maxtek6/filegrpc-go";
+
+package filegrpc;
+
+service Upload {
+    rpc Begin (BeginUploadRequest) returns (BeginUploadResponse) {}
+    rpc Update (UpdateUploadRequest) returns (UpdateUploadResponse) {}
+    rpc End (EndUploadRequest) returns (EndUploadResponse) {}  
+}
+
+message BeginUploadRequest {
+    name string = 1;
+}
+
+message BeginUploadResponse {
+    transaction string = 1;
+}
+
+message UpdateUploadRequest {
+    transaction string = 1;
+    chunk bytes = 2;
+}
+
+message UpdateUploadResponse {
+
+}
+
+message EndUploadRequest {
+    transaction string = 1;
+}
+
+message EndUploadResponse {
+    metadata bytes = 1;
+}
