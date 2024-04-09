@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = "github.com/maxtek6/filegrpc-go;download";
+
+package filegrpc;
+
+service Download {
+    rpc Init(InitRequest) returns (InitResponse) {}
+    rpc Recv(RecvRequest) returns (stream RecvResponse) {}
+}
+
+message InitRequest {
+    string name = 1;
+}
+
+message InitResponse {
+    string download_id = 1;
+}
+
+message RecvRequest {
+    string download_id = 1;
+}
+
+message RecvResponse {
+    bytes chunk = 1;
+}
